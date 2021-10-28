@@ -137,7 +137,12 @@ class RecipeCard extends HTMLElement {
 
       //Num Ratings
       let ratings = document.createElement("span");
-      ratings.textContent = `(${ratingData["ratingCount"]})`;
+      let ratingCount = () => {
+        return ratingData["ratingCount"]
+          ? ratingData["ratingCount"]
+          : ratingData["reviewCount"];
+      };
+      ratings.textContent = `(${ratingCount()})`;
       rating.appendChild(ratings);
     } else {
       //No reviews span
@@ -168,8 +173,6 @@ class RecipeCard extends HTMLElement {
 
     this.shadow.appendChild(card);
     this.shadow.appendChild(styleElem);
-
-    console.log(data);
 
     // Some functions that will be helpful here:
     //    document.createElement()
